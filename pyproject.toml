@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "superpowered"
+version = "0.0.0"
+description = "DRF API for Superheros"
+authors = ["Terry Brooks, Jr. <Terry.Arthur@BrooksJr.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.2.2"
+djangorestframework = "^3.14.0"
+django-filter = "*"
+Markdown = "^3.4.3"
+djangorestframework-csv = "^2.1.1"
+django-restql = "^0.15.3"
+djoser = "^2.2.0"
+djangorestframework-simplejwt = "^5.2.2"
+
+[tool.poetry.group.dev.dependencies]
+icecream = "^2.1.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

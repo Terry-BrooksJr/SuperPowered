@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'API',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+
 
 ]
 
@@ -137,6 +140,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
+        'rest_framework.authentication.TokenAuthentication',
     ],
     "DEFAULT_THROTTLE_RATES": {"anon": "2/minute", "user": "5/minute"},
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",

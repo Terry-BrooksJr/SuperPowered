@@ -27,3 +27,4 @@ class HeroSerializer(DynamicFieldsMixin, ModelSerializer):
     class Meta:
         model = Hero
         fields = '__all__'
+        

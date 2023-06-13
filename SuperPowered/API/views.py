@@ -12,6 +12,10 @@ class ModifyHeroView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class=HeroSerializer
     lookup_field = 'id'
 
+class CreateNewHeroView(generics.CreateAPIView):
+    queryset=Hero.objects.all()
+    serializer_class=HeroSerializer
+
 class PublisherListView(generics.ListAPIView):
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
