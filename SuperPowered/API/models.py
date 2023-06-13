@@ -4,6 +4,8 @@ from django.utils.translation import gettext_lazy as _
 
 class Race(models.Model):
     name = models.CharField(max_length=255, db_index=True)
+    def __str__(self):
+        return f"{self.name}"
     class Meta:
         db_table = "race"
         ordering = ["name"]
@@ -12,6 +14,8 @@ class Race(models.Model):
 
 class Alignment(models.Model):
     name = models.CharField(max_length=255, db_index=True)
+    def __str__(self):
+        return f"{self.name}"
     class Meta:
         db_table = "alignment"
         ordering = ["name"]
@@ -20,6 +24,8 @@ class Alignment(models.Model):
 
 class Publisher(models.Model):
     name = models.CharField(max_length=255, db_index=True)
+    def __str__(self):
+        return f"{self.name}"
     class Meta:
         db_table = "publisher"
         ordering = ["name"]
@@ -29,6 +35,8 @@ class Publisher(models.Model):
 
 class SuperPower(models.Model):
     name = models.CharField(max_length=255)
+    def __str__(self):
+        return f"{self.name}"
     class Meta:
         db_table = "super_abilities"
         ordering = ["name"]
@@ -36,6 +44,8 @@ class SuperPower(models.Model):
         verbose_name_plural = "super powers & abilities"
 
 class Hero(models.Model):
+    def __str__(self):
+        return f"{self.name} - {publisher.name}"
     class GENDER(models.TextChoices):
         MALE = 'M', _('Male')
         FEMALE = 'F', _('Female')
@@ -50,10 +60,10 @@ class Hero(models.Model):
     alignment = models.ForeignKey(Alignment, on_delete=models.PROTECT,null=True)
     weight = models.IntegerField(null=True)
     height = models.IntegerField(default="0", null=True)
-    publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, default=""),
   
 
     class Meta:
+        unique_together = ['name', 'alignment', 'gender','race']
         db_table = "hero"
         ordering = ["name"]
         verbose_name = "hero"
