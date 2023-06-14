@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 
 class Race(models.Model):
@@ -54,6 +55,7 @@ class Hero(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     gender = models.CharField(max_length=1, choices=GENDER.choices, default=GENDER.NON_GENDERED)
     eye_color = models.CharField(max_length=255)
+    publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, default="", null=True, db_index=True)
     race = models.ForeignKey(Race, on_delete=models.PROTECT,null=True)
     hair_color = models.CharField(max_length=255)
     skin_color = models.CharField(max_length=255)
@@ -63,7 +65,7 @@ class Hero(models.Model):
   
 
     class Meta:
-        unique_together = ['name', 'alignment', 'gender','race']
+        unique_together = ['name', 'alignment', 'gender','race', 'height', 'weight', 'skin_color', 'hair_color', 'eye_color']
         db_table = "hero"
         ordering = ["name"]
         verbose_name = "hero"
